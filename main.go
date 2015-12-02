@@ -10,18 +10,32 @@ import (
 	"strings"
 )
 
-func main() {
+func showHelp(meta *ec2metadata.EC2Metadata){
 
-	if len(os.Args) != 1 {
-		fmt.Println("Please supply an attribute to query")
-		os.Exit(1)
-	}
+	fmt.Printf("usage: meta ATTRIBUTE\n\nValid attributes are:\n")
+	categories, _ := meta.GetMetadata("/")
+	fmt.Println(categories)
+	fmt.Println("region")
+}
+
+func main() {
 
 	meta := ec2metadata.New(session.New())
 	if meta.Available() == false {
 		fmt.Println("Not an EC2 instance or Metadata service unavailable")
 		os.Exit(2)
 	}
+
+	if len(os.Args) < 2 {
+		fmt.Println("Please supply an attribute to query or -h for help")
+		os.Exit(1)
+	}
+
+	if os.Args[1] == "-h" || os.Args[1] == "--help" {
+		showHelp(meta)
+		os.Exit(0)
+	}
+
 
 	var result string
 	var err error
