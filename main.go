@@ -1,5 +1,5 @@
-// Package ec2meta contains some functions to assist in
-// the querying of the ec2 metadata service, using the offical AWS SDK
+// Package go-ec2meta generates a binary to facilitate the querying of 
+// the ec2 metadata service, using the offical AWS SDK.
 package main
 
 import (
