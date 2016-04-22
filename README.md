@@ -3,8 +3,6 @@ Simple tool for querying the metadata service from an EC2 instance
 
 ## Usage
 
-(For these examples, the binary has been compiled with `GOOS=linux GOARCH=amd64 go build -o meta`)
-
 A check will be performed to confirm the availabilty of the EC2 metadata service (in other words - are you on an EC2 box?)
 
 Providing the `-h` or `--help` flag lists available metadata:
@@ -46,4 +44,12 @@ Then quite simply:
 us-east-1
 # meta instance-type
 m3.xlarge
+```
+
+## Building 
+
+If running OSX, you'll need to compile this binary for use on EC2 Linux (assuming you're running Linux).
+
+```
+go-ec2meta/meta:~$ GOOS=linux GOARCH=amd64 go build
 ```
